@@ -19,7 +19,10 @@ Answer the following questions based on the Chapter 6 reading from your textbook
 
 8. One way to prevent deadlocks is to eliminate the hold-and-wait condition. In the textbook it was proposed that before asking for a new resource, a process must first release whatever resources it already holds (assuming that is possible). However, doing so introduces the danger that it may get the new resource but lose some of the existing ones to competing processes. Propose an improvement to this scheme. The Linux kernel enforces a global lock-ordering convention to prevent circular wait — how does this approach relate to your proposed improvement, and what are its limitations?
 
-9. A network protocol handles transmission collisions using exponential backoff: when two nodes transmit simultaneously and collide, each waits a random interval before retrying. (a) Under what conditions could this protocol produce livelock rather than deadlock? (b) Could a node be starved under this protocol? (c) Compare livelock and starvation to deadlock: which of the three requires external intervention to resolve, and why?
+9. A network protocol handles transmission collisions using exponential backoff: when two nodes transmit simultaneously and collide, each waits a random interval before retrying. 
+    - Under what conditions could this protocol produce livelock rather than deadlock?
+    - Could a node be starved under this protocol?
+    - Compare livelock and starvation to deadlock: which of the three requires external intervention to resolve, and why?
 
 10. In 2026, researchers found a bug in the Apollo Guidance Computer’s gyro control code that had survived 57 years of scrutiny. The AGC ran a real-time multitasking OS with shared resource locks. The `LGYRO` lock was acquired at the start of a gyro torque operation and released on normal completion — but if the crew activated the cage switch (an emergency gimbal clamp) mid-torque, the error path exited without releasing the lock. Two instructions were missing from the `BADEND` error routine. Once stuck, every subsequent gyro operation found the lock held and slept waiting for a wake signal that would never come. The DSKY accepted commands normally and produced no alarm.
 
